@@ -8,14 +8,24 @@ end = date.today()
 #end = datetime(2014,3,1,0,0,0)
 start = end - timedelta(days=800)
 
-stocks = sorted(['PRF','VEU','BLV','VNQ','EMB','DBC','DBA','VWO','GLD',
-'CRQ.TO', 'EMB', 'VTIP', 'VNQI', 'EWJ', 'LQD'])
-#stocks = sorted(['RWX', 'PCY', 'WIP', 'EFA', 'HYG', 'EEM', 'LQD', 'VNQ', 'TIP', 'VTI', 'DBC', 'GLD', 'DBA', 'TLT'])
-#stocks = sorted(['FTS.TO','CU.TO','ACO-X.TO','TRI.TO','ENB.TO','IMO.TO','CNR.TO',
-#                'ESI.TO','EMP-A.TO','TRP.TO','SAP.TO','SNC.TO','REF-UN.TO','CNQ.TO',
-#                'MHR.TO','SU.TO','RBA.TO','PSI.TO','HCG.TO','MRU.TO','CMG.TO','SCL.TO',
-#                'RCI-B.TO','SJR-B.TO','CCL-B.TO','IFC.TO','EMA.TO','CCA.TO','LB.TO','GS.TO',
-#                'GLN.TO','LAS-A.TO','THI.TO','HLF.TO','BYD-UN.TO','PJC-A.TO','BCE.TO','ESL.TO','FNV.TO'])
+stocks = ['BLV', # Vanguard Long-Term Bond ETF
+    'XIC.TO', # iShares S&P/TSX Capped Composite Index ETF
+    #    'ZLB.TO', # BMO Low Volatility Canadian Equity ETF
+    #'XMV.TO', # iShares MSCI Canada Minimum Volatility Index ETF
+    'DBA', # DB Agriculture Fund
+    'DBC', # DB Commodity Index Tracking Fund
+    'EMB', # iShares J.P. Morgan USD Emerging Markets Bond ETF
+    'EWJ', # iShares MSCI Japan ETF
+    'GLD', # SPDR Gold Trust
+    'LQD', # iShares iBoxx $ Investment Grade Corporate Bond ETF
+    'PRF', # FTSE RAFI US 1000 Portfolio
+    'RWX', # SPDR DJ Wilshire Intl Real Estate
+    'VCIT', # Intermediate-Term Corporate Bond Index Fund
+    'VEU', # FTSE All World Ex US ETF
+    'VNQ', # REIT ETF
+    'TIP', # TIPS Bond ETF
+    'VWO' # Emerging Markets ETF
+    ]
 
 print (start,end)
 
