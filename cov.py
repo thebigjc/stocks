@@ -40,7 +40,7 @@ def get_opt_holdings_opt(returns):
 
 if len(sys.argv) > 1:
     syms = open(sys.argv[1], 'rU')
-    syms = [x.strip().replace('.', '-') for x in syms.readlines() if len(x.strip())]
+    syms = [x.strip() for x in syms.readlines() if len(x.strip())]
 else:
     syms = open('div.csv', 'rU')
     syms = [x.strip().replace('.', '-')+".TO" for x in syms.readlines() if len(x.strip())]
@@ -64,8 +64,8 @@ log_returns = np.log(returns - 0.01/252)
 
 weights = get_opt_holdings_opt(log_returns[-22*3:])
 weights = weights / weights.sum()
-weights = weights[weights > 0.01].order()
-#weights = weights.order()
+#weights = weights[weights > 0.01].order()
+weights = weights.order()
 
 print weights
 
