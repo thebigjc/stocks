@@ -1,5 +1,6 @@
 __author__ = 'jchristensen'
 
+
 import pandas.io.data as web
 import pandas as pd
 from datetime import timedelta, datetime, date
@@ -12,6 +13,9 @@ from scipy.optimize import brute
 end = date.today()
 #end = datetime(2014,5,1,0,0,0)
 start = end - timedelta(days=800)
+
+import warnings
+warnings.filterwarnings('error')
 
 def load_stocks(stocks, start, end):
     fn = "cache/%s-%s-%s.pkl" % ('_'.join(stocks), str(start), str(end))
@@ -65,7 +69,7 @@ dlr = load_stocks(['DLR.TO'], start, end)
 
 dr = load_stocks(stocks, start, end)
 
-dlr = dlr['Adj Close'].fillna(method='pad') / 10
+dlr = dlr['Close'].fillna(method='pad') / 10
 adj_close = dr['Adj Close'].fillna(method='pad')
 close = dr['Close'].fillna(method='pad')
 
@@ -78,8 +82,8 @@ sma200 = adj_close[-200:].mean()
 sma200 = sma200 < adj_close.iloc[-1]
 
 for s in not_ca:
-    adj_close[s] *= dlr
-    close[s] *= dlr
+    adj_close[s] = dlr.mul(adj_close[s], axis=0)
+    close[s] = dlr.mul(close[s], axis=0)
 
 returns = np.log(adj_close.shift(1) / adj_close)
 cor = returns.corr()
@@ -100,6 +104,8 @@ x = x[sma200]
 
 x = x.order()
 
+print x
+
 x = x[-6:]
 
 norm = x/x.sum()
@@ -117,7 +123,7 @@ shares_high = sp.ceil(shares / 50)
 shares_low = sp.floor(shares / 50)
 
 ranges = [slice(int(l-1), int(h+1)) for l,h in zip(shares_low, shares_high)]
-print ranges
+#print ranges
 
 shares = brute(slippage, ranges, (price, close), finish=None)
 
@@ -128,6 +134,7 @@ port['price'] = price
 port['shares'] = port.lots * 50
 port['book'] = port.shares * port.close
 port['slippage'] = port.book - port.price
+port['momentum'] = x
 
 print port
 print port.book.sum(), PORT_SIZE

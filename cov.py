@@ -106,7 +106,7 @@ print price
 stocks = momentum[stocks_w].order()[-COUNT/2:].index.values
 price = price[stocks]
 
-PORT_SIZE = 103415.00 - 3540.00
+PORT_SIZE = 100000
 
 port = PORT_SIZE * 1. / len(price) / price
 
