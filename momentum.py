@@ -1,6 +1,7 @@
 __author__ = 'jchristensen'
 
 
+from random import SystemRandom
 import pandas.io.data as web
 import pandas as pd
 from datetime import timedelta, datetime, date
@@ -138,3 +139,7 @@ port['momentum'] = x
 
 print port
 print port.book.sum(), PORT_SIZE
+
+random = SystemRandom()
+
+print "Rebalance:", random.choice(range(30)) == 0
