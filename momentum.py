@@ -1,7 +1,5 @@
 __author__ = 'jchristensen'
 
-
-from random import SystemRandom
 import pandas.io.data as web
 import pandas as pd
 from datetime import timedelta, datetime, date
@@ -138,8 +136,11 @@ port['slippage'] = port.book - port.price
 port['momentum'] = x
 
 print port
+
+mf = open('mail.txt', 'wt')
+
+print >>mf, port
+
 print port.book.sum(), PORT_SIZE
 
-random = SystemRandom()
 
-print "Rebalance:", random.choice(range(30)) == 0
